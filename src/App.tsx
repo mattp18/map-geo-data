@@ -37,8 +37,7 @@ function App() {
   };
 
   useEffect(() => {
-    mapboxgl.accessToken =
-      "pk.eyJ1IjoiY29sYmluYXRvcjIwMjQiLCJhIjoiY2x6MXpzczh0MGEzZzJpbXdpMTRsYnEwYSJ9.1bNIt3vYfP4JaNIjbPMJWg";
+    mapboxgl.accessToken = "enteraccesstoken";
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/mapbox/satellite-v9",
