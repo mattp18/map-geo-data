@@ -4,9 +4,18 @@ import mapboxgl, { Popup } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./App.css";
 import { fetchData } from "./api";
+import NavBar from "./components/navbar";
+import { Affix, Button, NavLink } from "@mantine/core";
 
 function App() {
   const [geoJson, setGeoJson] = useState(null);
+
+  const navItems = [
+    { label: "Home", link: "/" },
+    { label: "Extract Data", link: "/" },
+    { label: "Sample Data", link: "/" },
+    { label: "About", link: "/" },
+  ];
 
   const geojson = {
     type: "FeatureCollection",
@@ -37,7 +46,7 @@ function App() {
   };
 
   useEffect(() => {
-    mapboxgl.accessToken = "enteraccesstoken";
+    mapboxgl.accessToken = "yourkey";
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/mapbox/satellite-v9",
@@ -74,25 +83,12 @@ function App() {
   }, []);
 
   return (
-    <div id="map">
-      {/* <Grid justify="center" align="flex-start">
-        <Grid.Col span={3}>
-          <Button variant="filled">Button</Button>
-        </Grid.Col>
-        <Grid.Col span={6}>
-          <Map
-            mapLib={import("mapbox-gl")}
-            initialViewState={{
-              longitude: -77.10668412735288,
-              latitude: 39.112403395586114,
-              zoom: 15,
-            }}
-            style={{ width: 400, height: 400 }}
-            mapStyle="mapbox://styles/mapbox/satellite-v9"
-            mapboxAccessToken="pk.eyJ1IjoiY29sYmluYXRvcjIwMjQiLCJhIjoiY2x6MXpzczh0MGEzZzJpbXdpMTRsYnEwYSJ9.1bNIt3vYfP4JaNIjbPMJWg"
-          />
-        </Grid.Col>
-      </Grid> */}
+    <div>
+      {navItems.map((item) => (
+        <NavLink key={item.label} label={item.label} />
+      ))}
+
+      <div className="map-container" id="map"></div>
     </div>
   );
 }
